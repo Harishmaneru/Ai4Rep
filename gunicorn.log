@@ -1,0 +1,118 @@
+nohup: ignoring input
+[2024-09-18 12:00:41 +0000] [47409] [INFO] Starting gunicorn 23.0.0
+[2024-09-18 12:00:41 +0000] [47409] [INFO] Listening at: http://127.0.0.1:8000 (47409)
+[2024-09-18 12:00:41 +0000] [47409] [INFO] Using worker: sync
+[2024-09-18 12:00:41 +0000] [47410] [INFO] Booting worker with pid: 47410
+[2024-09-18 12:00:41 +0000] [47411] [INFO] Booting worker with pid: 47411
+[2024-09-18 12:00:41 +0000] [47412] [INFO] Booting worker with pid: 47412
+[2024-09-18 12:00:41 +0000] [47413] [INFO] Booting worker with pid: 47413
+[2024-09-18 12:00:41 +0000] [47414] [INFO] Booting worker with pid: 47414
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:77: LangChainDeprecationWarning: The class `OpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the langchain-openai package and should be used instead. To use it run `pip install -U langchain-openai` and import as `from langchain_openai import OpenAI`.
+  self.llm = OpenAI(temperature=0, api_key=OPENAI_API_KEY)
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:77: LangChainDeprecationWarning: The class `OpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the langchain-openai package and should be used instead. To use it run `pip install -U langchain-openai` and import as `from langchain_openai import OpenAI`.
+  self.llm = OpenAI(temperature=0, api_key=OPENAI_API_KEY)
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:77: LangChainDeprecationWarning: The class `OpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the langchain-openai package and should be used instead. To use it run `pip install -U langchain-openai` and import as `from langchain_openai import OpenAI`.
+  self.llm = OpenAI(temperature=0, api_key=OPENAI_API_KEY)
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:77: LangChainDeprecationWarning: The class `OpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the langchain-openai package and should be used instead. To use it run `pip install -U langchain-openai` and import as `from langchain_openai import OpenAI`.
+  self.llm = OpenAI(temperature=0, api_key=OPENAI_API_KEY)
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:77: LangChainDeprecationWarning: The class `OpenAI` was deprecated in LangChain 0.0.10 and will be removed in 1.0. An updated version of the class exists in the langchain-openai package and should be used instead. To use it run `pip install -U langchain-openai` and import as `from langchain_openai import OpenAI`.
+  self.llm = OpenAI(temperature=0, api_key=OPENAI_API_KEY)
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:92: LangChainDeprecationWarning: The class `LLMChain` was deprecated in LangChain 0.1.17 and will be removed in 1.0. Use RunnableSequence, e.g., `prompt | llm` instead.
+  return LLMChain(llm=self.llm, prompt=prompt)
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:92: LangChainDeprecationWarning: The class `LLMChain` was deprecated in LangChain 0.1.17 and will be removed in 1.0. Use RunnableSequence, e.g., `prompt | llm` instead.
+  return LLMChain(llm=self.llm, prompt=prompt)
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:92: LangChainDeprecationWarning: The class `LLMChain` was deprecated in LangChain 0.1.17 and will be removed in 1.0. Use RunnableSequence, e.g., `prompt | llm` instead.
+  return LLMChain(llm=self.llm, prompt=prompt)
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:92: LangChainDeprecationWarning: The class `LLMChain` was deprecated in LangChain 0.1.17 and will be removed in 1.0. Use RunnableSequence, e.g., `prompt | llm` instead.
+  return LLMChain(llm=self.llm, prompt=prompt)
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+DEBUG:httpx:load_ssl_context verify=True cert=None trust_env=True http2=False
+DEBUG:httpx:load_verify_locations cafile='/home/ubuntu/ai4rep-backend/venv/lib/python3.12/site-packages/certifi/cacert.pem'
+/home/ubuntu/ai4rep-backend/src/agents/find_people_agent.py:92: LangChainDeprecationWarning: The class `LLMChain` was deprecated in LangChain 0.1.17 and will be removed in 1.0. Use RunnableSequence, e.g., `prompt | llm` instead.
+  return LLMChain(llm=self.llm, prompt=prompt)
+[2024-09-18 12:04:39 +0000] [47413] [INFO] Worker exiting (pid: 47413)
+[2024-09-18 12:04:39 +0000] [47411] [INFO] Worker exiting (pid: 47411)
+[2024-09-18 12:04:39 +0000] [47409] [INFO] Handling signal: term
+[2024-09-18 12:04:39 +0000] [47414] [INFO] Worker exiting (pid: 47414)
+[2024-09-18 12:04:39 +0000] [47410] [INFO] Worker exiting (pid: 47410)
+[2024-09-18 12:04:39 +0000] [47412] [INFO] Worker exiting (pid: 47412)
+[2024-09-18 12:04:39 +0000] [47409] [ERROR] Worker (pid:47413) was sent SIGTERM!
+[2024-09-18 12:04:39 +0000] [47409] [ERROR] Worker (pid:47411) was sent SIGTERM!
+[2024-09-18 12:04:40 +0000] [47409] [INFO] Shutting down: Master
