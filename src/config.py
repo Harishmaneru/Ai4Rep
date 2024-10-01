@@ -5,7 +5,21 @@ load_dotenv()
 
 USER_ID = os.getenv('USER_ID')
 
-LINKEDIN_SCRAPING_API = "https://videoresponse.onepgr.com:3001/LinkedInlikescomments"
+
+# Phantombuster API base URL
+PHANTOMBUSTER_API_BASE_URL = "https://videoresponse.onepgr.com:3001"
+
+# LinkedIn Comments and Likes Scraping Endpoint
+PHANTOMBUSTER_LINKEDIN_COMMENTS_LIKES_API = f"{PHANTOMBUSTER_API_BASE_URL}/LinkedInlikescomments"
+
+# LinkedIn Profile Scraping Endpoint
+PHANTOMBUSTER_LINKEDIN_PROFILE_API = f"{PHANTOMBUSTER_API_BASE_URL}//LinkedIncompanyurl"
+
+# Sales Navigator Profile Scraping Endpoint
+PHANTOMBUSTER_SALES_NAVIGATOR_PROFILE_API = f"{PHANTOMBUSTER_API_BASE_URL}/LinkedInprofileurl"
+
+# Sales Navigator Emails Scraping Endpoint
+PHANTOMBUSTER_SALES_NAVIGATOR_EMAILS_API = f"{PHANTOMBUSTER_API_BASE_URL}/LinkedInquerieURL"
 
 
 FIND_PEOPLE_API = "https://crawl.onepgr.com:3002/search-people"

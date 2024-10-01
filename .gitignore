@@ -1,0 +1,21 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Environment variables file
+.env
+
+# Log files
+*.log
+
+# IDE-specific files (if you're using an IDE)
+.vscode/
+.idea/
+
+# Specific files you might want to ignore
+gunicorn.conf.py
+nohup.out
+onepgr.com.key

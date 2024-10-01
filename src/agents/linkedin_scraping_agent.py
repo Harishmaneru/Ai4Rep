@@ -1,29 +1,28 @@
-import requests
-import time
-from ..config import PHANTOMBUSTER_LINKEDIN_API  
+from src.api.linkedin_scraping_api import (
+    scrape_linkedin_comments_likes,
+    scrape_linkedin_profile,
+    scrape_sales_navigator_profile,
+    scrape_sales_navigator_emails
+)
 
 class LinkedInScrapingAgent:
-    def __init__(self, post_url, session_cookie):
-        self.post_url = post_url
-        self.session_cookie = session_cookie
-        self.phantombuster_api_url = PHANTOMBUSTER_LINKEDIN_API   
+    def __init__(self):
+        pass
 
-    def scrape_linkedin_data(self):
-        headers = {
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "postUrl": self.post_url,
-            "sessionCookie": self.session_cookie
-        }
+    def scrape_linkedin_comments_likes(self, post_url, session_cookie):
+        """Scrape LinkedIn post for comments and likes."""
+        return scrape_linkedin_comments_likes(post_url, session_cookie)
 
+    def scrape_linkedin_profile(self, profile_url, session_cookie):
+        """Scrape LinkedIn profile data."""
+        return scrape_linkedin_profile(profile_url, session_cookie)
 
-        response = requests.post(self.phantombuster_api_url, json=payload, headers=headers)
+    def scrape_sales_navigator_profile(self, profile_url, session_cookie):
+        """Scrape Sales Navigator profile."""
+        return scrape_sales_navigator_profile(profile_url, session_cookie)
 
-        if response.status_code == 200:
-            # Wait for the agent to finish scraping
-            time.sleep(50)  # Wait for Phantombuster to scrape the data
-            
-            return response.json()
-        else:
-            return {"error": f"Failed to scrape data. Status code: {response.status_code}"}
+    def scrape_sales_navigator_emails(self, querieURL, session_cookie):
+        """Scrape Sales Navigator search results for emails."""
+        print(f"Attempting to scrape emails with URL: {querieURL}")
+
+        return scrape_sales_navigator_emails(querieURL, session_cookie)

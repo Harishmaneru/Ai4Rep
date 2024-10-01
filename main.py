@@ -28,7 +28,7 @@ logging.basicConfig(level=logging.DEBUG)
 # Initialize agents
 app.find_people_agent = FindPeopleAgent()
 app.enrich_people_agent = EnrichPeopleAgent()
-# app.linkedin_scraping_agent = LinkedInScrapingAgent()
+app.linkedin_scraping_agent = LinkedInScrapingAgent()
 
 
 # Define intents and keywords
@@ -51,13 +51,39 @@ intents_and_keywords = [
             r"get (email|phone|contact) of .+",
         ],
     },
-     {
-        "intent": "linkedin_scrape",
-        "keywords": ["scrape LinkedIn", "get LinkedIn comments", "LinkedIn likes", "scrape LinkedIn data"],
+
+# -------------intents_and_keywords for LinkedIn Tasks ------------------------------------------------------------------ 
+ {
+        "intent": "linkedin_scrape_comments_likes",
+        "keywords": ["scrape LinkedIn comments", "get LinkedIn likes", "LinkedIn comments", "LinkedIn likes"],
         "patterns": [
-            r"scrape LinkedIn (comments|likes) from .+",
-            r"get LinkedIn (comments|likes) for .+",
-            r"LinkedIn scrape for .+",
+            r"scrape LinkedIn comments from https:\/\/www\.linkedin\.com\/in\/\w+\/?",
+            r"get LinkedIn likes for https:\/\/www\.linkedin\.com\/posts\/\w+",
+            r"scrape LinkedIn post https:\/\/www\.linkedin\.com\/posts\/\w+",
+        ],
+    },
+    {
+        "intent": "linkedin_scrape_profile",
+        "keywords": ["scrape LinkedIn profile", "get LinkedIn profile data"],
+        "patterns": [
+            r"scrape LinkedIn profile of https:\/\/www\.linkedin\.com\/in\/\w+\/?",
+            r"get LinkedIn profile for https:\/\/www\.linkedin\.com\/in\/\w+\/?",
+        ],
+    },
+    {
+        "intent": "sales_navigator_profile",
+        "keywords": ["scrape Sales Navigator profile", "get Sales Navigator profile"],
+        "patterns": [
+            r"scrape Sales Navigator profile for https:\/\/www\.linkedin\.com\/sales\/people\/\w+",
+            r"get Sales Navigator profile of https:\/\/www\.linkedin\.com\/sales\/people\/\w+",
+        ],
+    },
+    {
+        "intent": "sales_navigator_emails",
+        "keywords": ["scrape emails from Sales Navigator", "get Sales Navigator emails"],
+        "patterns": [
+            r"scrape emails from Sales Navigator https:\/\/www\.linkedin\.com\/sales\/search\/people\?query=.+",
+            r"get emails from Sales Navigator search https:\/\/www\.linkedin\.com\/sales\/search\/people\?query=.+",
         ],
     },
 ]
@@ -82,45 +108,33 @@ def find_most_similar_intent(input_text):
                 best_intent = intent["intent"]
     return best_intent if max_score > 70 else None
 
+# def determine_agent_type(prompt):
+#     # Try to match intent based on patterns
+#     intent = match_intent_pattern(prompt)
+    
+#     # If no pattern match, use fuzzy matching
+#     if not intent:
+#         intent = find_most_similar_intent(prompt)
+    
+#     if intent == "find_people":
+#         return "find"
+#     elif intent == "enrich_people":
+#         return "enrich"
+#     elif intent == "linkedin_scrape":
+#         return "linkedin_scrape"
+#     else:
+#         return "unknown"
+
 def determine_agent_type(prompt):
-    # Try to match intent based on patterns
+    # Attempt to find a direct match with the defined patterns
     intent = match_intent_pattern(prompt)
     
-    # If no pattern match, use fuzzy matching
+    # If no direct match, attempt fuzzy matching
     if not intent:
         intent = find_most_similar_intent(prompt)
     
-    if intent == "find_people":
-        return "find"
-    elif intent == "enrich_people":
-        return "enrich"
-    elif intent == "linkedin_scrape":
-        return "linkedin_scrape"
-    else:
-        return "unknown"
-    
-
-#inkedin_scrape route
-@app.route('/api/linkedin_scrape', methods=['POST'])
-def linkedin_scrape():
-    data = request.json
-    post_url = data.get('postUrl')
-    session_cookie = data.get('sessionCookie')
-
-    if not post_url or not session_cookie:
-        return jsonify({"success": False, "error": "Missing postUrl or sessionCookie"}), 400
-
-    try:
-       
-        agent = LinkedInScrapingAgent(post_url, session_cookie)
-        result = agent.scrape_linkedin_data()
-        print("Scraped LinkedIn Data:", result)
-        return jsonify({"success": True, "data": result})
-    
-    except Exception as e:
-        app.logger.error(f"Error processing LinkedIn scraping request: {str(e)}", exc_info=True)
-        return jsonify({"success": False, "error": str(e)}), 500
-
+    # Return the detected intent directly or 'unknown' if no intent is matched
+    return intent if intent else "unknown"
 
 
 @app.route('/api/process', methods=['POST', 'OPTIONS'])
@@ -144,6 +158,14 @@ def process_request():
     if not params:
         app.logger.error(f"Missing params. Received data: {data}")
         return jsonify({"success": False, "error": "Missing params"}), 400
+    
+        # Initialize variables to avoid UnboundLocalError
+    post_url = params.get('postUrl', '')  # Initialize to empty string if not present
+    profile_url = params.get('profileUrl', '')  # Initialize to empty string if not present
+    session_cookie = params.get('sessionCookie', '')  # Initialize to empty string if not present
+    querieURL = params.get('querieUrl', '')  # Initialize to empty string if not present
+
+    agent_type = determine_agent_type(prompt)
 
     try:
         agent_type = determine_agent_type(prompt)
@@ -169,25 +191,28 @@ def process_request():
             })
             app.logger.debug(f"Enriched people: {enriched_people}")
             result = {'enriched_people': enriched_people}
-            
-        elif agent_type == "linkedin_scrape":
-            # LinkedIn Scraping
-            post_url = params.get('postUrl')
-            session_cookie = params.get('sessionCookie')
-
-            if not post_url or not session_cookie:
-                return jsonify({"success": False, "error": "Missing postUrl or sessionCookie"}), 400
-
-            # Use LinkedInScrapingAgent to scrape data
-            agent = LinkedInScrapingAgent(post_url, session_cookie)
-            result = agent.scrape_linkedin_data()
-
-            # Log the scraped data
-            app.logger.debug(f"Scraped LinkedIn Data: {result}")
-
-            return jsonify({"success": True, "data": result})
+# -------------LinkedIn Scraping ------------------------------------------------------------------  
+        elif agent_type in ["linkedin_scrape_comments_likes", "linkedin_scrape_profile", "sales_navigator_profile", "sales_navigator_emails"]:
+            if 'postUrl' in params:
+                post_url = params['postUrl']
+            if 'profileUrl' in params:
+                profile_url = params['profileUrl']
+            session_cookie = params.get('sessionCookie', '')
+            if agent_type == "linkedin_scrape_comments_likes":
+                result = app.linkedin_scraping_agent.scrape_linkedin_comments_likes(post_url, session_cookie)
+            elif agent_type == "linkedin_scrape_profile":
+                result = app.linkedin_scraping_agent.scrape_linkedin_profile(profile_url, session_cookie)
+            elif agent_type == "sales_navigator_profile":
+                result = app.linkedin_scraping_agent.scrape_sales_navigator_profile(profile_url, session_cookie)
+            elif agent_type == "sales_navigator_emails":
+                querieUrl = params.get('querieUrl')  # Use querieUrl consistently
+            if querieUrl is None:
+              app.logger.error("Missing querieUrl in params")
+              return jsonify({"success": False, "error": "Missing querieUrl parameter"}), 400
+            app.logger.debug(f"Scraping Sales Navigator emails with querieUrl: {querieUrl}")
+            result = app.linkedin_scraping_agent.scrape_sales_navigator_emails(querieUrl, session_cookie)
         else:
-            raise ValueError(f"Unable to determine agent type from prompt: {prompt}")
+            return jsonify({"success": False, "error": "Invalid or unrecognized intent"}), 400
 
         return jsonify({"success": True, "data": result})
 
