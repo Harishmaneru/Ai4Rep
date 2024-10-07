@@ -24,7 +24,7 @@ def enrich_people_api(input_str: str) -> str:
         input_dict = json.loads(input_str)
         action_input = json.loads(input_dict['action_input'])
         
-        print(f"Parsed action_input: {action_input}")  # Debug print
+        print(f"Parsed action_input: {action_input}") # Debug print
         
         result = enrich_people(
             people_data=action_input['people'],

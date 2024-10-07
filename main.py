@@ -163,7 +163,7 @@ def process_request():
     post_url = params.get('postUrl', '')  # Initialize to empty string if not present
     profile_url = params.get('profileUrl', '')  # Initialize to empty string if not present
     session_cookie = params.get('sessionCookie', '')  # Initialize to empty string if not present
-    querieURL = params.get('querieUrl', '')  # Initialize to empty string if not present
+    querieUrl = params.get('querieUrl', '')  # Initialize to empty string if not present
 
     agent_type = determine_agent_type(prompt)
 
@@ -192,25 +192,23 @@ def process_request():
             app.logger.debug(f"Enriched people: {enriched_people}")
             result = {'enriched_people': enriched_people}
 # -------------LinkedIn Scraping ------------------------------------------------------------------  
-        elif agent_type in ["linkedin_scrape_comments_likes", "linkedin_scrape_profile", "sales_navigator_profile", "sales_navigator_emails"]:
-            if 'postUrl' in params:
-                post_url = params['postUrl']
-            if 'profileUrl' in params:
-                profile_url = params['profileUrl']
-            session_cookie = params.get('sessionCookie', '')
-            if agent_type == "linkedin_scrape_comments_likes":
-                result = app.linkedin_scraping_agent.scrape_linkedin_comments_likes(post_url, session_cookie)
-            elif agent_type == "linkedin_scrape_profile":
-                result = app.linkedin_scraping_agent.scrape_linkedin_profile(profile_url, session_cookie)
-            elif agent_type == "sales_navigator_profile":
-                result = app.linkedin_scraping_agent.scrape_sales_navigator_profile(profile_url, session_cookie)
-            elif agent_type == "sales_navigator_emails":
-                querieUrl = params.get('querieUrl')  # Use querieUrl consistently
-            if querieUrl is None:
-              app.logger.error("Missing querieUrl in params")
-              return jsonify({"success": False, "error": "Missing querieUrl parameter"}), 400
+         # LinkedIn scraping cases
+        elif agent_type == "linkedin_scrape_comments_likes":
+            result = app.linkedin_scraping_agent.scrape_linkedin_comments_likes(post_url, session_cookie)
+        
+        elif agent_type == "linkedin_scrape_profile":
+            result = app.linkedin_scraping_agent.scrape_linkedin_profile(profile_url, session_cookie)
+        
+        elif agent_type == "sales_navigator_profile":
+            result = app.linkedin_scraping_agent.scrape_sales_navigator_profile(profile_url, session_cookie)
+        
+        elif agent_type == "sales_navigator_emails":
+            if not querieUrl:
+                return jsonify({"success": False, "error": "Missing querieUrl parameter"}), 400
+
             app.logger.debug(f"Scraping Sales Navigator emails with querieUrl: {querieUrl}")
             result = app.linkedin_scraping_agent.scrape_sales_navigator_emails(querieUrl, session_cookie)
+        
         else:
             return jsonify({"success": False, "error": "Invalid or unrecognized intent"}), 400
 
